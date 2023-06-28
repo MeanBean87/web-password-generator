@@ -1,8 +1,3 @@
-const lowercaseString = "abcdefghijklmnopqrstuvwxyz";
-const uppercaseString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-const numberString = "0123456789";
-const specialString = "!@#$%^&*()_+~`|}{[]:;?><,./-=";
-
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
@@ -53,33 +48,40 @@ const generatePassword = () => {
       generateBtn.removeEventListener("click", writePassword);
       return null;
     } else {
-      //Create a variable to store the characterSet.
-      let characterSet = "";
 
-      //Adding the selected character types to the characterSet.
+      //Create an object to store the character Strings.
+      const characterStrings = {
+        lowercaseString: "abcdefghijklmnopqrstuvwxyz",
+        uppercaseString: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        numberString: "0123456789",
+        specialString: "!@#$%^&*()_+~`|}{[]:;?><,./-=",
+      };
+
+      let selectedCharacters = "";
+      //Adding the selected character types to the selectedCharacters.
       if (includeLowercase) {
-        characterSet += lowercaseString;
+        selectedCharacters += characterStrings.lowercaseString;
       }
 
       if (includeUppercase) {
-        characterSet += uppercaseString;
+        selectedCharacters += characterStrings.uppercaseString;
       }
 
       if (includeNumbers) {
-        characterSet += numberString;
+        selectedCharacters += characterStrings.numberString;
       }
 
       if (includeSpecial) {
-        characterSet += specialString;
+        selectedCharacters += characterStrings.specialString;
       }
 
-      //Create a variable to store the randomly selected String.
+      //Create a variable to store the randomly selected String from the user prompts.
       let randomString = "";
 
       //For loop to generate the password.
       for (let i = 0; i < passwordLength; i++) {
-        randomString += characterSet.charAt(
-          Math.floor(Math.random() * characterSet.length)
+        randomString += selectedCharacters.charAt(
+          Math.floor(Math.random() * selectedCharacters.length)
         );
       }
 

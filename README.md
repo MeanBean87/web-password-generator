@@ -8,8 +8,8 @@ This web application generates secure passwords based on user-defined criteria. 
 
 ## Technology Used
 
-| Technology | Badge                                                           | Documentation                                                                    |
-| ---------- | --------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Technology | Badge                                                             | Documentation                                                                       |
+| ---------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | HTML       | ![HTML](https://img.shields.io/badge/HTML-5-orange)               | [HTML Documentation](https://developer.mozilla.org/en-US/docs/Web/HTML)             |
 | CSS        | ![CSS](https://img.shields.io/badge/CSS-3-blue)                   | [CSS Documentation](https://developer.mozilla.org/en-US/docs/Web/CSS)               |
 | JavaScript | ![JavaScript](https://img.shields.io/badge/JavaScript-ES6-yellow) | [JavaScript Documentation](https://developer.mozilla.org/en-US/docs/Web/JavaScript) |
@@ -57,33 +57,40 @@ const generatePassword = () => {
       generateBtn.removeEventListener("click", writePassword);
       return null;
     } else {
-      //Create a variable to store the characterSet.
-      let characterSet = "";
 
-      //Adding the selected character types to the characterSet.
+      //Create an object to store the character Strings.
+      const characterStrings = {
+        lowercaseString: "abcdefghijklmnopqrstuvwxyz",
+        uppercaseString: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        numberString: "0123456789",
+        specialString: "!@#$%^&*()_+~`|}{[]:;?><,./-=",
+      };
+
+      let selectedCharacters = "";
+      //Adding the selected character types to the selectedCharacters.
       if (includeLowercase) {
-        characterSet += lowercaseString;
+        selectedCharacters += characterStrings.lowercaseString;
       }
 
       if (includeUppercase) {
-        characterSet += uppercaseString;
+        selectedCharacters += characterStrings.uppercaseString;
       }
 
       if (includeNumbers) {
-        characterSet += numberString;
+        selectedCharacters += characterStrings.numberString;
       }
 
       if (includeSpecial) {
-        characterSet += specialString;
+        selectedCharacters += characterStrings.specialString;
       }
 
-      //Create a variable to store the randomly selected String.
+      //Create a variable to store the randomly selected String from the user prompts.
       let randomString = "";
 
       //For loop to generate the password.
       for (let i = 0; i < passwordLength; i++) {
-        randomString += characterSet.charAt(
-          Math.floor(Math.random() * characterSet.length)
+        randomString += selectedCharacters.charAt(
+          Math.floor(Math.random() * selectedCharacters.length)
         );
       }
 
@@ -110,7 +117,7 @@ To use the Web Password Generator:
 
 ## Author Info
 
- Michael Mattingly
+Michael Mattingly
 
 - GitHub: [meanbean87](https://github.com/meanbean87)
 - LinkedIn: [Michael Mattingly](https://www.linkedin.com/in/michael-mattingly-5580b1280/)
