@@ -22,12 +22,11 @@ const generatePassword = () => {
   );
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
     alert(
-      "Password length must be a number between 8 and 128 characters.\nex: 8 - 128"
+      "Password length must be a number between 8 and 128 characters.\nExample: 8 - 128"
     );
     generateBtn.removeEventListener("click", writePassword);
     return null;
   } else {
-    
     //Prompt the user for each type of character they would like to include in the password.
     let includeLowercase = confirm(
       'Would you like to include lowercase letters?"\n"OK" for Yes, "Cancel" for No.'
@@ -45,7 +44,11 @@ const generatePassword = () => {
     // If the user does not select at least one character type and
     // alert the user that at least one character type must be selected.
     if (
-      !includeLowercase && !includeUppercase && !includeNumbers && !includeSpecial) {
+      !includeLowercase &&
+      !includeUppercase &&
+      !includeNumbers &&
+      !includeSpecial
+    ) {
       alert("You must select at least one character type. Please try again.");
       generateBtn.removeEventListener("click", writePassword);
       return null;
@@ -56,13 +59,32 @@ const generatePassword = () => {
       //Adding the selected character types to the characterSet.
       if (includeLowercase) {
         characterSet += lowercaseString;
-      } else if (includeUppercase) {
+      }
+
+      if (includeUppercase) {
         characterSet += uppercaseString;
-      } else if (includeNumbers) {
+      }
+
+      if (includeNumbers) {
         characterSet += numberString;
-      } else if (includeSpecial) {
+      }
+
+      if (includeSpecial) {
         characterSet += specialString;
       }
+
+      //Create a variable to store the randomly selected String.
+      let randomString = "";
+
+      //For loop to generate the password.
+      for (let i = 0; i < passwordLength; i++) {
+        randomString += characterSet.charAt(
+          Math.floor(Math.random() * characterSet.length)
+        );
+      }
+
+      generateBtn.removeEventListener("click", writePassword);
+      return randomString;
     }
   }
 };
