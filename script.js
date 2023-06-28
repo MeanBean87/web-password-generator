@@ -18,11 +18,11 @@ const generatePassword = () => {
     )
   );
 
-  // Generates alert if password not between 8 and 128 characters, or not a number.
+  // Generates alert if password not between 8 and 128 characters, or not a number and returns null.
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
-    alert(
-      "Password length must be a number between 8 and 128 characters.\nExample: 8 - 128."
-    );
+    alert("Password length must be a number between 8 and 128 characters.\n" +
+      "Example: 8 - 128.");
+    return null;
   }
 
   //Prompt the user for each type of character they would like to include in the password.
@@ -35,10 +35,10 @@ const generatePassword = () => {
   let includeSpecial = confirm('Would you like to include special characters?"\n' +
     '"OK" for Yes, "Cancel" for No.');
 
-  // If the user does not select at least one character type and
-  // alert the user that at least one character type must be selected.
+  // alert the user that at least one character type must be selected and return null.
   if (!includeLowercase && !includeUppercase && !includeNumbers && !includeSpecial) {
     alert("You must select at least one character type. Please try again.");
+    return null;
   }
 
   //Create an object to store the character Strings.
