@@ -10,6 +10,7 @@ function writePassword() {
 }
 
 const generatePassword = () => {
+  generateBtn.removeEventListener("click", writePassword);
   let passwordLength = Number(
     prompt(
       "How many characters would you like your password to be?\nMust be between 8 and 128 characters"
@@ -19,7 +20,6 @@ const generatePassword = () => {
     alert(
       "Password length must be a number between 8 and 128 characters.\nExample: 8 - 128"
     );
-    generateBtn.removeEventListener("click", writePassword);
     return null;
   } else {
     //Prompt the user for each type of character they would like to include in the password.
@@ -45,10 +45,8 @@ const generatePassword = () => {
       !includeSpecial
     ) {
       alert("You must select at least one character type. Please try again.");
-      generateBtn.removeEventListener("click", writePassword);
       return null;
     } else {
-
       //Create an object to store the character Strings.
       const characterStrings = {
         lowercaseString: "abcdefghijklmnopqrstuvwxyz",
@@ -84,8 +82,6 @@ const generatePassword = () => {
           Math.floor(Math.random() * selectedCharacters.length)
         );
       }
-
-      generateBtn.removeEventListener("click", writePassword);
       return randomString;
     }
   }
