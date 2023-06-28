@@ -15,20 +15,36 @@ function writePassword() {
 
 }
 
-
 const generatePassword = () => {
-  let passwordLength = Number(prompt("How many characters would you like your password to be? Must be between 8 and 128 characters"));
+  let passwordLength = Number(prompt("How many characters would you like your password to be?\nMust be between 8 and 128 characters"));
   if (isNaN(passwordLength) || passwordLength < 8 || passwordLength > 128) {
     alert("Password length must be a number between 8 and 128 characters.\nex: 8 - 128");
     generateBtn.removeEventListener("click", writePassword);
     return null;
+  } else {
+
+    //Create a variable to store the characterSet.
+    let characterSet = "";
+    
+    //Prompt the user for each type of character they would like to include in the password.
+    let includeLowercase = confirm('Would you like to include lowercase letters?"\n"OK" for Yes, "Cancel" for No.');
+    let includeUppercase = confirm('Would you like to include uppercase letters?"\n"OK" for Yes, "Cancel" for No.');
+    let includeNumbers = confirm('Would you like to include numbers?"\n"OK" for Yes, "Cancel" for No.');
+    let includeSpecial = confirm('Would you like to include special characters?"\n"OK" for Yes, "Cancel" for No.');
+
+    //If the user does not select at least one character type, alert the user that at least one character type must be selected.
+    if (!includeLowercase && !includeUppercase && !includeNumbers && !includeSpecial) {
+      alert("You must select at least one character type.");
+      generateBtn.removeEventListener("click", writePassword);
+      return null;
+    } else {
+
+
+
+
+    }
   }
-
-
-
- }
-
-
+}
 
 
 // Add event listener to generate button
