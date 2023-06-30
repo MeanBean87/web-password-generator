@@ -10,7 +10,6 @@ function writePassword() {
 }
 
 const generatePassword = () => {
-  generateBtn.removeEventListener("click", writePassword);
   let passwordLength = Number(
     prompt(
       "How many characters would you like your password to be?\n" +
